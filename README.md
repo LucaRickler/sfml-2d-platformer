@@ -12,7 +12,7 @@ To build this project, you need SFML, `version 2.3.2`.
 
 Then, simply `make` and run `bin/game`.
 
-The makefile has been built to run on Linux.
+This project requires a Linux machine to run. Other operative systems are not supported.
 
 
 ## Controls
