@@ -14,3 +14,9 @@ Then, simply `make` and run `bin/game`.
 
 The makefile has been built to run on Linux.
 
+
+## Controls
+
+WASD to move, space bar to jump.
+
+Right click slows time, left click teleports you while in slow-mo.
