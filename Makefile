@@ -4,6 +4,7 @@ SRCDIR := src
 BUILDDIR := build
 TARGETDIR := bin
 TARGET := bin/game
+TOCOPY := Tiles_64x64.png
  
 SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
@@ -15,6 +16,7 @@ INC := -I include
 $(TARGET): $(OBJECTS)
 	@echo " Linking..."
 	@mkdir -p $(TARGETDIR)
+	@cp $(TOCOPY) $(TARGETDIR)/.
 	@echo " $(CC) $^ -o $(TARGET) $(LIB)"; $(CC) $^ -o $(TARGET) $(LIB)
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
