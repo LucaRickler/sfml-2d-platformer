@@ -1,12 +1,12 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>
-#include "src/SpriteComponent.h"
-#include "src/WeaponArm.h"
-#include "src/Entity.h"
-#include "src/Character.h"
-#include "src/TileMap.h"
-#include "src/AIController.h"
+#include <SpriteComponent.h>
+#include <WeaponArm.h>
+#include <Entity.h>
+#include <Character.h>
+#include <TileMap.h>
+#include <AIController.h>
 
 int main() {
 	WorldSpace world = WorldSpace();

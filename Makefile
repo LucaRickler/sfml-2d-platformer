@@ -1,16 +1,28 @@
-CXXFLAGS =	-std=c++11	-O2 -g  -Wall -fmessage-length=0 -lpthread -lsfml-graphics -lsfml-window -lsfml-system
+CC := g++ # This is the main compiler
+# CC := clang --analyze # and comment out the linker last line for sanity
+SRCDIR := src
+BUILDDIR := build
+TARGET := bin/game
+ 
+SRCEXT := cpp
+SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
+OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
+CFLAGS := -O2 -g -Wall -fmessage-length=0 -std=c++11 # -Wall
+LIB := -pthread -lsfml-graphics -lsfml-window -lsfml-system -L lib
+INC := -I include
 
-COMP = src/Component.o src/Entity.o src/SpriteComponent.o src/RigidBody.o src/TextureDrawer.o src/WorldSpace.o src/TileMap.o src/TileMapSprite.o src/Character.o src/TrackerComponent.o src/AIController.o src/WeaponArm.o
-OBJS = main.o $(COMP)
+$(TARGET): $(OBJECTS)
+	@echo " Linking..."
+	@echo " $(CC) $^ -o $(TARGET) $(LIB)"; $(CC) $^ -o $(TARGET) $(LIB)
 
-LIBS = 
+$(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
+	@mkdir -p $(BUILDDIR)
+	@echo " $(CC) $(CFLAGS) $(INC) -c -o $@ $<"; $(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
-TARGET =	bin/game
-
-$(TARGET):	$(OBJS)
-	$(CXX) -o $(TARGET) $(OBJS) $(LIBS) $(CXXFLAGS)
-
-all:	$(TARGET)
+all: $(TARGET)
 
 clean:
-	rm -f $(OBJS) $(TARGET)
+	@echo " Cleaning..."; 
+	@echo " $(RM) -r $(BUILDDIR) $(TARGET)"; $(RM) -r $(BUILDDIR) $(TARGET)
+	
+.PHONY: clean
