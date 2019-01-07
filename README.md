@@ -4,7 +4,7 @@ Prototype for a 2D platformer game.
 
 Written in C++ 11, using the graphics library SFML (https://www.sfml-dev.org/).
 
-This project implements an entity–component–system and a grid-based platformer framework.
+This project implements a Unity3D-like entity–component–system and a grid-based platformer framework.
 
 ## Build & install
 
